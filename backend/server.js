@@ -26,13 +26,18 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 // CORS: support multiple origins (comma-separated in .env)
 const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
   .split(',')
-  .map(url => url.trim());
+  .map(url => url.trim().replace(/\/+$/, '')); // strip trailing slashes
+
+console.log('🔒 CORS allowed origins:', allowedOrigins);
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, etc.)
+    // Allow requests with no origin (mobile apps, curl, Postman, etc.)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
+    // Strip trailing slash from incoming origin too
+    const cleanOrigin = origin.replace(/\/+$/, '');
+    if (allowedOrigins.includes(cleanOrigin)) return callback(null, true);
+    console.warn('⛔ CORS blocked origin:', origin);
     callback(new Error('Not allowed by CORS'));
   },
   credentials: true
