@@ -16,6 +16,9 @@ const studentRoutes = require('./src/routes/student.routes');
 const app = express();
 const server = http.createServer(app);
 
+// Trust proxy (Railway, Render, etc. use reverse proxies)
+app.set('trust proxy', 1);
+
 // Initialize Socket.io
 const io = initSocket(server);
 app.set('io', io);
