@@ -13,13 +13,24 @@ const OrderFormPage = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [branchAdmin, setBranchAdmin] = useState(null);
-  const [formStatus, setFormStatus] = useState({ isFormOpen: true, tshirtPrice: 350 });
+  const [formStatus, setFormStatus] = useState({ isFormOpen: true, tshirtPrice: 350, branchPrices: [] });
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [sameAsContact, setSameAsContact] = useState(true);
+  const [branchPrice, setBranchPrice] = useState(350);
 
   useEffect(() => {
     getFormStatus().then(({ data }) => setFormStatus(data)).catch(() => {});
   }, []);
+
+  // Update price when branch changes
+  useEffect(() => {
+    if (formData.branch && formStatus.branchPrices?.length > 0) {
+      const found = formStatus.branchPrices.find(bp => bp.branch === formData.branch);
+      setBranchPrice(found ? found.price : (formStatus.tshirtPrice || 350));
+    } else {
+      setBranchPrice(formStatus.tshirtPrice || 350);
+    }
+  }, [formData.branch, formStatus]);
 
   useEffect(() => {
     if (sameAsContact) {
@@ -122,7 +133,7 @@ const OrderFormPage = () => {
 
           <div className="bg-amber-50 rounded-xl p-4 border border-amber-200 mb-6">
             <p className="text-sm text-amber-800">
-              <strong>💰 Payment Amount:</strong> ₹{formStatus.tshirtPrice || 350}
+              <strong>💰 Payment Amount:</strong> ₹{branchPrice}
             </p>
             <p className="text-xs text-amber-600 mt-1">
               Pay directly to your branch representative. Your order will be confirmed once payment is verified.
@@ -151,7 +162,7 @@ const OrderFormPage = () => {
             </div>
           </div>
           <h1 className="text-3xl font-bold text-surface-900 mb-2">T-Shirt Order Form</h1>
-          <p className="text-surface-500">MNIT Jaipur · Batch 2024 · ₹{formStatus.tshirtPrice || 350}</p>
+          <p className="text-surface-500">MNIT Jaipur · Batch 2026 · ₹{branchPrice}</p>
         </div>
 
         {/* Form Card */}

@@ -80,10 +80,19 @@ const getFormStatus = asyncHandler(async (req, res) => {
     settings = { isFormOpen: true };
   }
 
-  // Get T-shirt price
+  // Get branch-specific price if branch is provided
+  const { branch } = req.query;
+  let branchPrice = settings.tshirtPrice || 350;
+  if (branch && settings.branchPrices) {
+    const found = settings.branchPrices.find(bp => bp.branch === branch);
+    if (found) branchPrice = found.price;
+  }
+
   res.json({
     isFormOpen: settings.isFormOpen,
-    tshirtPrice: settings.tshirtPrice || 350,
+    tshirtPrice: branchPrice,
+    defaultPrice: settings.tshirtPrice || 350,
+    branchPrices: settings.branchPrices || [],
     registrationDeadline: settings.registrationDeadline,
     lockAlertMessage: !settings.isFormOpen ? settings.lockAlertMessage : null,
     lockedAt: settings.lockedAt

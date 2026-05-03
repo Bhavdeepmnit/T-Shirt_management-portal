@@ -322,6 +322,7 @@ const getFormSettings = asyncHandler(async (req, res) => {
     settings: {
       isFormOpen: settings.isFormOpen,
       tshirtPrice: settings.tshirtPrice,
+      branchPrices: settings.branchPrices || [],
       registrationDeadline: settings.registrationDeadline,
       lockAlertMessage: settings.isFormOpen ? null : settings.lockAlertMessage,
       lockedAt: settings.lockedAt,

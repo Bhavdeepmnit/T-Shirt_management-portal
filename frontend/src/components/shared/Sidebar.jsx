@@ -54,7 +54,7 @@ const Sidebar = ({ role }) => {
 
       {/* Footer */}
       <div className="p-4 border-t border-white/10">
-        <p className="text-xs text-slate-500 text-center">MNIT Jaipur © 2024</p>
+        <p className="text-xs text-slate-500 text-center">MNIT Jaipur © 2026</p>
       </div>
     </>
   );
