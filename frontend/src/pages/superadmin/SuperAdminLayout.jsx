@@ -4,11 +4,11 @@ import Navbar from '../../components/shared/Navbar';
 
 const SuperAdminLayout = () => {
   return (
-    <div className="flex min-h-screen bg-surface-50">
+    <div className="flex min-h-screen bg-slate-50">
       <Sidebar role="superadmin" />
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         <Navbar />
-        <main className="p-6">
+        <main className="p-4 sm:p-6">
           <Outlet />
         </main>
       </div>
