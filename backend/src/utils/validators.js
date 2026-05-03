@@ -78,6 +78,10 @@ const validators = {
   // Update form settings
   updateFormSettings: Joi.object({
     tshirtPrice: Joi.number().positive(),
+    branchPrices: Joi.array().items(Joi.object({
+      branch: Joi.string().valid(...BRANCHES).required(),
+      price: Joi.number().positive().required()
+    })),
     registrationDeadline: Joi.date().iso()
   }).min(1),
 
