@@ -236,7 +236,7 @@ cp .env.example .env
 
 # ⚠️ Edit .env → paste your MongoDB URI
 # If password has @ in it, encode as %40
-# Example: mongodb+srv://user:pass%40123@cluster0.xxx.mongodb.net/mnit-tshirt
+# Example: mongodb+srv://user:password%40mnit@cluster0.xxx.mongodb.net/mnit-tshirt
 ```
 
 ### 3. Seed the Database

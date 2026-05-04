@@ -90,10 +90,10 @@ Scroll down to **"Environment Variables"** section and add these one by one:
 |-----|-------|
 | `NODE_ENV` | `production` |
 | `PORT` | `10000` |
-| `MONGODB_URI` | `mongodb+srv://2022ucp1717_db_user:bhavdeep%405577@cluster0.txawrfr.mongodb.net/mnit-tshirt?retryWrites=true&w=majority` |
-| `JWT_SECRET` | `e44999f647bc06d7651d7b0392ea1b77db6c9d95f7b4ca3e424d165b3962fd64c24cdec59abb99b0525d91560b65b838ef6dca95d3421a96d8ebcb7a73fd9dae` |
+| `MONGODB_URI` | `<your-mongodb-uri-from-atlas>` |
+| `JWT_SECRET` | `<your-generated-jwt-secret>` |
 | `JWT_EXPIRES_IN` | `7d` |
-| `JWT_REFRESH_SECRET` | `490578a030dea9c1fb3ad6209a133e2db5775af730783a87ea064035b1f56b919b21a3f01a12bcc772ce22d9825a1562d387bc80682a14587b1f7d3684eade2d` |
+| `JWT_REFRESH_SECRET` | `<your-generated-refresh-secret>` |
 | `JWT_REFRESH_EXPIRES_IN` | `30d` |
 | `RATE_LIMIT_WINDOW_MS` | `900000` |
 | `RATE_LIMIT_MAX_REQUESTS` | `100` |
